@@ -20,7 +20,7 @@ public final class User implements Serializable {
     private Integer age;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
     private List<Task> tasks= new ArrayList<>();
 
     public User() { }
@@ -57,6 +57,11 @@ public final class User implements Serializable {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public void updateData(User user) {
+        user.setName(getName());
+        user.setAge(getAge());
     }
 
     @Override
