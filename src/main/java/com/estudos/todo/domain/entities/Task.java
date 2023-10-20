@@ -7,8 +7,8 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "activities")
-public class Activity implements Serializable {
+@Table(name = "tasks")
+public final class Task implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
@@ -16,18 +16,19 @@ public class Activity implements Serializable {
     private Long id;
     private String name;
     private String description;
-    private Status status;
+    private Integer status;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User owner;
 
-    public Activity() { }
+    public Task() { }
 
-    public Activity(Long id, String name, String description, Status status, User owner) {
+    public Task(Long id, String name, String description, Status status, User owner) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.status = status;
+        setStatus(status);
         this.owner = owner;
     }
 
@@ -55,12 +56,14 @@ public class Activity implements Serializable {
         this.description = description;
     }
 
-    public Status getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
-        this.status = status;
+        if (status != null) {
+            this.status = status.getStatus();
+        }
     }
 
     public User getOwner() {
@@ -76,11 +79,11 @@ public class Activity implements Serializable {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
 
-        Activity activity = (Activity) object;
+        Task task = (Task) object;
 
-        if (!id.equals(activity.id)) return false;
-        if (!name.equals(activity.name)) return false;
-        return description.equals(activity.description);
+        if (!id.equals(task.id)) return false;
+        if (!name.equals(task.name)) return false;
+        return description.equals(task.description);
     }
 
     @Override

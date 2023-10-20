@@ -1,5 +1,6 @@
 package com.estudos.todo.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User implements Serializable {
+public final class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
@@ -18,8 +19,9 @@ public class User implements Serializable {
     private String name;
     private Integer age;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
-    private List<Activity> activities= new ArrayList<>();
+    private List<Task> tasks= new ArrayList<>();
 
     public User() { }
 
@@ -53,8 +55,8 @@ public class User implements Serializable {
         this.age = age;
     }
 
-    public List<Activity> getActivities() {
-        return activities;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     @Override
