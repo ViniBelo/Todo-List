@@ -13,9 +13,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDTO insert(UserDTO userDTO) {;
-        userRepository.save(userDTO.user());
-        return userDTO;
+    public User insert(UserDTO userDTO) {;
+        return userRepository.save(userDTO.user());
     }
 
     public void delete(User user) {
