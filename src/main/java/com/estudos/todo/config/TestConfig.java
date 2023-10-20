@@ -45,6 +45,6 @@ public class TestConfig implements CommandLineRunner {
 
         taskService.delete(taskDTO1);
 
-        userService.delete(userDTO2.user());
+        userService.delete(userDTO2.user().getId());
     }
 }
