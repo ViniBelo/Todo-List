@@ -3,14 +3,9 @@ package com.estudos.todo.domain.entities;
 import com.estudos.todo.domain.entities.enums.Status;
 import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Entity
 @Table(name = "tasks")
-public final class Task implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public final class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -56,8 +51,8 @@ public final class Task implements Serializable {
         this.description = description;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Status getStatus() {
+        return Status.valueOf(status);
     }
 
     public void setStatus(Status status) {
@@ -72,6 +67,12 @@ public final class Task implements Serializable {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public void updateData(Task task) {
+        task.setName(getName());
+        task.setDescription(getDescription());
+        task.setStatus(getStatus());
     }
 
     @Override

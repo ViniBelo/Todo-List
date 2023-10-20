@@ -3,16 +3,13 @@ package com.estudos.todo.domain.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public final class User implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public final class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

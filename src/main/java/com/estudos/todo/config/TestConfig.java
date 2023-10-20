@@ -42,9 +42,5 @@ public class TestConfig implements CommandLineRunner {
 
         taskService.insert(taskDTO1);
         taskService.insert(taskDTO2);
-
-        taskService.delete(taskDTO1);
-
-        userService.delete(userDTO2.user().getId());
     }
 }
