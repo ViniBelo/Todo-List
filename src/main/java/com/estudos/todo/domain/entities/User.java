@@ -2,23 +2,28 @@ package com.estudos.todo.domain.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Short age;
+    private Integer age;
 
     @OneToMany(mappedBy = "owner")
     private List<Activity> activities= new ArrayList<>();
 
     public User() { }
 
-    public User(Long id, String name, Short age) {
+    public User(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -40,11 +45,11 @@ public class User {
         this.name = name;
     }
 
-    public Short getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(Short age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

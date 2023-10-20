@@ -3,10 +3,16 @@ package com.estudos.todo.domain.entities;
 import com.estudos.todo.domain.entities.enums.Status;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "activities")
-public class Activity {
+public class Activity implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
