@@ -39,8 +39,7 @@ public class UserService {
     public User update(Long id, UserDTO userDTO) {
         try {
             User entity = userRepository.getReferenceById(id);
-            userDTO.user().updateData(entity);
-            return userDTO.user();
+            return userRepository.save(userDTO.user().updateData(entity));
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         } catch (NullPointerException e) {

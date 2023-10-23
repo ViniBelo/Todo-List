@@ -56,9 +56,10 @@ public final class User {
         return tasks;
     }
 
-    public void updateData(User user) {
+    public User updateData(User user) {
         user.setName(getName());
         user.setAge(getAge());
+        return user;
     }
 
     @Override

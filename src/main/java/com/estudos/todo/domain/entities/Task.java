@@ -69,10 +69,11 @@ public final class Task {
         this.owner = owner;
     }
 
-    public void updateData(Task task) {
+    public Task updateData(Task task) {
         task.setName(getName());
         task.setDescription(getDescription());
         task.setStatus(getStatus());
+        return task;
     }
 
     @Override

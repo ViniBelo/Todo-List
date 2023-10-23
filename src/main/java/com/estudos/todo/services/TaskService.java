@@ -41,8 +41,7 @@ public class TaskService {
     public Task update(Long id, TaskDTO taskDTO) {
         try {
             Task entity = taskRepository.getReferenceById(id);
-            taskDTO.task().updateData(entity);
-            return taskDTO.task();
+            return taskRepository.save(taskDTO.task().updateData(entity));
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         } catch (NullPointerException e) {
